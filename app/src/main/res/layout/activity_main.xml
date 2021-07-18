@@ -1,87 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
 
-    <ScrollView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            tools:context=".MainActivity">
 
+            <TextView
+                android:id="@+id/image_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="#fff">
+                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                android:id="@+id/imageCardView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_text"
+                android:layout_height="300dp">
 
                 <LinearLayout
-                    android:padding="10dp"
+                    android:weightSum="4"
+                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Result"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/resultET"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint=""
-                    android:autoLink="all"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp"
-                app:cardBackgroundColor="#fff">
-
-                <LinearLayout
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Image Preview"
-                        android:textSize="20sp"/>
+                    android:layout_height="match_parent">
 
                     <ImageView
+                        android:scaleType="fitCenter"
+                        android:layout_weight="3"
+                        android:src="@drawable/ic_camera"
                         android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:contentDescription="Captured Image"
+                         />
+                    <TextView
+                        android:id="@+id/sample_text"
+                        android:text="Scan something"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxHeight="250dp"
-                        android:hint="Click + button to add image"
-                        android:autoLink="all"/>
+                        />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
-        </LinearLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageCardView" />
 
+            <TextView
+                android:id="@+id/scanned_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Scanned text from the image will be shown below"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/resultET"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:hint="Scanned Text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scanned_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+           <Button
+               app:layout_constraintStart_toStartOf="parent"
+               android:id="@+id/CameraBtn"
+               android:text="Camera"
+               app:layout_constraintEnd_toStartOf="@id/webBtn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:layout_constraintBottom_toBottomOf="parent"/>
+            <Button
+                android:text="Search"
+                android:id="@+id/webBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/CameraBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-</RelativeLayout>
